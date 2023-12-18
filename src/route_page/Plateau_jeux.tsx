@@ -11,6 +11,8 @@ function Plateau_jeux() {
 
   const recup_value = (value:number) =>{
     SetScore(value)
+    console.log(ping);
+    
   }
 
   useEffect(() => {
