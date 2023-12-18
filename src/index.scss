@@ -1,11 +1,22 @@
+@use 'sass:math';
+
+$random: random(100);
+
+html,body, #root{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
 body{
   background-color: lightgray;
 }
 
 .div_start{
+  position: absolute;
   text-align: center;
-  margin: auto;
   margin-top: 20%;
+  margin-left: 50%;
   button{
     font-size: 2em;
     width: 100px;
@@ -14,13 +25,28 @@ body{
 }
 
 .div_plateau_jeu{
+  width: 100%;
+  height: 100%;
   margin: auto;
+  position: relative;
   background-color: black;
-  width: 1400px;
-  height: 700px;
-}
-.div_navig_start{
-  height: 50px;
-  width: 50px;
-  margin: auto;
+  .kill_div{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid white;
+    background-color: white;
+    position: absolute;
+  }
+  .div_navig_start{
+    height: 50px;
+    width: 50px;
+    margin-top: 30%;
+    margin-left: 50%;
+    position: absolute;
+    p{
+      text-align: center;
+      color: white;
+    }
+  }
 }
