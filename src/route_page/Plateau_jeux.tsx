@@ -24,7 +24,7 @@ function Plateau_jeux() {
     son_attante.pause()
     navig("/end/" + (timer ? (Date.now()-timer) / 1000:0).toString())
   }else{
-    navigator.vibrate(200)
+    navigator.vibrate([200])
     Setpoint(point+1)
     SetScore(point)
     son.currentTime = 0
