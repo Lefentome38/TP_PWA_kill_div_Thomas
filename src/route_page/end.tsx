@@ -16,18 +16,6 @@ function End() {
     SetTable_score(res)
   },[])
 
-  const liste = useCallback(()=>{
-    // let res: string[] = []
-    // for (let i = 0; i < localStorage.length; i++) {
-    //   let x = localStorage.getItem(i.toString())
-    //   if(x){
-    //     res = [x , ...res]
-    //   }
-    // }
-    // console.log(table_score);
-    // SetTable_score(res)
-  },[table_score])
-  
   const delete_localStorage = useCallback(()=>{
     localStorage.clear()
   },[])
@@ -42,7 +30,6 @@ function End() {
         <p>{params.timer}</p>
         <button onClick={() => navig("/")}>retour menu</button>
         <button onClick={delete_localStorage}>delete</button>
-        <button onClick={liste}>liste</button>
         <div className="tableau_score">
           {table_score.map((name:any,i:number)=>
             <p key={i}> {name} | {i} </p>
