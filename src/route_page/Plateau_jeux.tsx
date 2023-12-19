@@ -44,6 +44,7 @@ function Plateau_jeux() {
 
   const navig_start = useCallback(() => {
     navig("/")
+    console.log(ping);
     son_attante.currentTime = 0
     son_attante.pause()
   },[])
