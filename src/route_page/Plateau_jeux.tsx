@@ -21,10 +21,11 @@ function Plateau_jeux() {
     if (point===10) {
       son_attante.currentTime = 0
       son_attante.pause()
-      // new Notification('tata') // !!!
-      Notification.requestPermission().then((result)=>{
-        console.log(result,(timer ? (Date.now()-timer) / 1000:0).toString());
-      })
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          new Notification("Hi there!", { body: (timer ? (Date.now()-timer) / 1000:0).toString()});
+        }
+      });
       navig("/end/" + (timer ? (Date.now()-timer) / 1000:0).toString())
     }else{
       if (navigator.vibrate) {
