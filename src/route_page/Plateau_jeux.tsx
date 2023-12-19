@@ -7,7 +7,6 @@ const son_attante = new Audio("/musique-dattente.mp3")
 function Plateau_jeux() {
 
   const navig = useNavigate()
-  const [score,SetScore] = useState<number>()
   const [timer,SetTimer] = useState<number>()
   const [ping,SetPing] = useState<number>()
   const [point,Setpoint] = useState<number>(1) // !!!
@@ -26,7 +25,6 @@ function Plateau_jeux() {
   }else{
     navigator.vibrate([200])
     Setpoint(point+1)
-    SetScore(point)
     son.currentTime = 0
   }
   },[random_top, random_left, point])
@@ -59,7 +57,7 @@ function Plateau_jeux() {
 
         <div className="div_navig_start">
 
-          <p className="p_score">{score}</p>
+          <p className="p_score">{point-1}</p>
           <p>{(timer ? (Date.now()-timer) / 1000:0)}</p>
           <button onClick={navig_start}>go menu</button>
 
