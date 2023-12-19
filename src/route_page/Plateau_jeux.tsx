@@ -15,19 +15,15 @@ function Plateau_jeux() {
 
   const ajout_point = useCallback(() => {
     son.play()
-    SetRandom_top(Math.floor(Math.random()*41).toString())
-    SetRandom_left(Math.floor(Math.random()*101).toString())
-  
     if (point===10) {
       son_attante.currentTime = 0
       son_attante.pause()
-      if (Notification.permission) {
-        Notification.requestPermission().then((permission) => {
-          if (permission === "granted") {
-            new Notification("Hi there!", { body: (timer ? (Date.now()-timer) / 1000:0).toString()});
-          }
-        });
-      }
+      // Notification.requestPermission().then((permission) => {
+      //   if (permission === "granted") {
+      //     new Notification("Hi there!", { body: (timer ? (Date.now()-timer) / 1000:0).toString()});
+      //   }
+      // });
+      localStorage.setItem(localStorage.length.toString() ,(timer ? (Date.now()-timer) / 1000:0).toString()) // !!!
       navig("/end/" + (timer ? (Date.now()-timer) / 1000:0).toString())
     }else{
       if (navigator.vibrate) {
@@ -36,6 +32,8 @@ function Plateau_jeux() {
       Setpoint(point+1)
       son.currentTime = 0
     }
+    SetRandom_top(Math.floor(Math.random()*41).toString())
+    SetRandom_left(Math.floor(Math.random()*101).toString())
   },[random_top, random_left, point])
 
   

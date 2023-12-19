@@ -1,14 +1,54 @@
+import { useCallback, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 function End() {
+
+  const [table_score,SetTable_score] = useState<string[]>([])
+
+  useEffect(()=>{
+    let res: string[] = []
+    for (let i = 0; i < localStorage.length; i++) {
+      let x = localStorage.getItem(i.toString())
+      if(x){
+        res = [x , ...res]
+      }
+    }
+    SetTable_score(res)
+  },[])
+
+  const liste = useCallback(()=>{
+    // let res: string[] = []
+    // for (let i = 0; i < localStorage.length; i++) {
+    //   let x = localStorage.getItem(i.toString())
+    //   if(x){
+    //     res = [x , ...res]
+    //   }
+    // }
+    // console.log(table_score);
+    // SetTable_score(res)
+  },[table_score])
+  
+  const delete_localStorage = useCallback(()=>{
+    localStorage.clear()
+  },[])
+
   const navig = useNavigate()
   const params = useParams()
+
   return (
     <>
       <div>
-      <p>gagné</p>
-      <p>{params.timer}</p>
-      <button onClick={() => navig("/")}>retour menu</button>
+        <p>gagné</p>
+        <p>{params.timer}</p>
+        <button onClick={() => navig("/")}>retour menu</button>
+        <button onClick={delete_localStorage}>delete</button>
+        <button onClick={liste}>liste</button>
+        <div className="tableau_score">
+          {table_score.map((name:any,i:number)=>
+            <p key={i}> {name} | {i} </p>
+          )}
+        </div>
+
       </div>
     </>
   )
