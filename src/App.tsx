@@ -14,7 +14,7 @@ function App() {
       element: <Plateau_jeux/>
     },
     {
-      path:"/end:timer",
+      path:"/end/:timer",
       element: <End/>
     }
   ])

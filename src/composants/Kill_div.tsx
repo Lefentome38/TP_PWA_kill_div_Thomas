@@ -17,7 +17,7 @@ function Kill_div(props: {resultat_point:(resultatPoint:number) => void, Timer:s
     SetRandom_left(Math.floor(Math.random()*101).toString())
   
   if (point===10) {
-    navig("/end" + props.Timer)
+    navig("/end/" + props.Timer)
   }else{
     Setpoint(point+1)
     son.currentTime = 0
@@ -27,8 +27,7 @@ function Kill_div(props: {resultat_point:(resultatPoint:number) => void, Timer:s
 
   return (
     <>
-      <div onClick={ajout_point} className="kill_div" style={{marginTop: random_top+"%", marginLeft: random_left+"%"}}>
-      </div>
+      <div onClick={ajout_point} className="kill_div" style={{marginTop: random_top+"%", marginLeft: random_left+"%"}}></div>
     </>
   )
 }
