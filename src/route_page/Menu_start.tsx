@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 function Menu_start() {
 
   const navig = useNavigate()
+  
   const navig_jeu = useCallback(() => {
     navig("/plateau_jeux")
   },[])

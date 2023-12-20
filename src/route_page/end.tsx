@@ -27,12 +27,12 @@ function End() {
     <>
       <div>
         <p>gagné</p>
-        <p>{params.timer}</p>
+        <p>votre temps de jeu: {params.timer}s</p>
         <button onClick={() => navig("/")}>retour menu</button>
         <button onClick={delete_localStorage}>delete</button>
         <div className="tableau_score">
           {table_score.map((name:any,i:number)=>
-            <p key={i}> {name} | {i} </p>
+            <p key={i}> {i+1} | {name} </p>
           )}
         </div>
 
