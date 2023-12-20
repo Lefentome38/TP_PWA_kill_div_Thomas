@@ -24,7 +24,7 @@ function Plateau_jeux() {
       if (Notification) {
         Notification.requestPermission().then((permission) => {
           if (permission === "granted") {
-            new Notification("Hi there!", { body: (timer ? (Date.now()-timer) / 1000:0).toString()});
+            new Notification("Hi there!", { body: sum_timer()});
           }
         });
       }
