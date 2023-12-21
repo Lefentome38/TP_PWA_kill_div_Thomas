@@ -4,17 +4,23 @@ import { useNavigate } from "react-router-dom"
 const son = new Audio("/sound-effects-sonic-rings.mp3")
 const son_attante = new Audio("/musique-dattente.mp3")
 
+const position_rendom = () => {
+  return{
+    top: (Math.random()*100) + "%", 
+    left: (Math.random()*100) + "%"
+  }
+}
+
 function Plateau_jeux() {
-  const nbr_top = 100
-  const nbr_left = 100
   
   const navig = useNavigate()
   const [timer,SetTimer] = useState<number>()
   const [_,SetPing] = useState<number>()
   const [point,Setpoint] = useState<number>(1)
-  const [random_top,SetRandom_top] = useState(Math.floor(Math.random()*nbr_top))
-  const [random_left,SetRandom_left] = useState(Math.floor(Math.random()*nbr_left))
-
+  const [position,SetPosition] = useState(position_rendom())
+  // const [random_top,SetRandom_top] = useState(0)
+  // const [random_left,SetRandom_left] = useState(0)
+  
   function sum_timer() {
     return (timer ? (Date.now()-timer) / 1000:0).toString()
   }
@@ -47,19 +53,17 @@ function Plateau_jeux() {
       son.currentTime = 0
     }
 
-    SetRandom_top(Math.floor(Math.random()*nbr_top))
-    SetRandom_left(Math.floor(Math.random()*nbr_left))
+    SetPosition(position_rendom())
 
-  },[random_top, random_left, point])
+  },[point])
   
   useEffect(() => {
     SetTimer(Date.now())
     setInterval(()=>{
       SetPing(Math.random())
     },)
-    son_attante.play()  
     son_attante.currentTime = 0
-    son_attante.pause()
+    son_attante.play()  
   },[])
 
   const navig_start = useCallback(() => {
@@ -77,7 +81,7 @@ function Plateau_jeux() {
           <p className="p_score">{point-1}</p>
         </div>
         <div className="zone_div_kill">
-           <div onClick={click_div} className="kill_div" style={{marginTop: random_top+"%", marginLeft: random_left+"%"}}></div>  {/* problème de placement des div_kill, ils sortent de la zone de jeu */}
+           <div onClick={click_div} className="kill_div" style={position}></div>  {/* problème de placement des div_kill, ils sortent de la zone de jeu */}
         </div>
       </div>
     </>
