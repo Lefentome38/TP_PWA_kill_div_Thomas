@@ -16,32 +16,30 @@ function Plateau_jeux() {
   const navig = useNavigate()
   const [timer,SetTimer] = useState<number>()
   const [_,SetPing] = useState<number>()
-  const [point,Setpoint] = useState<number>(1)
+  const [point,Setpoint] = useState<number>(0)
   const [position,SetPosition] = useState(position_rendom())
-  
-  function sum_timer() {
-    return (timer ? (Date.now()-timer) / 1000:0).toString()
-  }
+
+  const sum_timer = (timer ? (Date.now()-timer) / 1000:0).toString()
 
   const click_div = useCallback(() => {
     son.play()
 
-    if (point===10) {
+    if (point===9) { // !!! décalage
       if (Notification) {
         Notification.requestPermission().then((permission) => {
           if (permission === "granted") {
-            new Notification("Hi there!", { body: sum_timer()});
+            new Notification("Hi there!", { body: sum_timer});
           }
         });
       }
 
       if (localStorage) {
-        localStorage.setItem(localStorage.length.toString() ,sum_timer()) // !!!
+        localStorage.setItem(localStorage.length.toString() ,sum_timer) // !!!
       }
 
       son_attante.currentTime = 0
       son_attante.pause()
-      navig("/end/" + sum_timer())
+      navig("/end/" + sum_timer)
     }
     else{
       if (navigator.vibrate) {
@@ -75,8 +73,8 @@ function Plateau_jeux() {
       <div className="div_plateau_jeu">
         <div className="div_info_navig">
           <button onClick={navig_start}>go menu</button>
-          <p>{sum_timer()}</p>
-          <p className="p_score">{point-1}</p>
+          <p>{sum_timer}</p>
+          <p className="p_score">{point}</p>
         </div>
         <div className="zone_div_kill">
            <div onClick={click_div} className="kill_div" style={position}></div>  {/* problème de placement des div_kill, ils sortent de la zone de jeu */}
