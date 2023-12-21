@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"
 
 function End() {
 
+  const navig = useNavigate()
+  const params = useParams()
   const [table_score,SetTable_score] = useState<string[]>([])
 
   useEffect(()=>{
@@ -19,9 +21,6 @@ function End() {
   const delete_localStorage = useCallback(()=>{
     localStorage.clear()
   },[])
-
-  const navig = useNavigate()
-  const params = useParams()
 
   return (
     <>

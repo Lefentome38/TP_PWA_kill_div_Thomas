@@ -18,8 +18,6 @@ function Plateau_jeux() {
   const [_,SetPing] = useState<number>()
   const [point,Setpoint] = useState<number>(1)
   const [position,SetPosition] = useState(position_rendom())
-  // const [random_top,SetRandom_top] = useState(0)
-  // const [random_left,SetRandom_left] = useState(0)
   
   function sum_timer() {
     return (timer ? (Date.now()-timer) / 1000:0).toString()
@@ -75,7 +73,7 @@ function Plateau_jeux() {
   return (
     <>
       <div className="div_plateau_jeu">
-        <div className="div_navig_start">
+        <div className="div_info_navig">
           <button onClick={navig_start}>go menu</button>
           <p>{sum_timer()}</p>
           <p className="p_score">{point-1}</p>
