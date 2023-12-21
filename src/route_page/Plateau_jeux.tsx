@@ -5,13 +5,15 @@ const son = new Audio("/sound-effects-sonic-rings.mp3")
 const son_attante = new Audio("/musique-dattente.mp3")
 
 function Plateau_jeux() {
+  const nbr_top = 100
+  const nbr_left = 100
   
   const navig = useNavigate()
   const [timer,SetTimer] = useState<number>()
   const [_,SetPing] = useState<number>()
   const [point,Setpoint] = useState<number>(1)
-  const [random_top,SetRandom_top] = useState(Math.floor(Math.random()*41).toString())
-  const [random_left,SetRandom_left] = useState(Math.floor(Math.random()*81).toString())
+  const [random_top,SetRandom_top] = useState(Math.floor(Math.random()*nbr_top))
+  const [random_left,SetRandom_left] = useState(Math.floor(Math.random()*nbr_left))
 
   function sum_timer() {
     return (timer ? (Date.now()-timer) / 1000:0).toString()
@@ -45,8 +47,8 @@ function Plateau_jeux() {
       son.currentTime = 0
     }
 
-    SetRandom_top(Math.floor(Math.random()*41).toString())
-    SetRandom_left(Math.floor(Math.random()*81).toString())
+    SetRandom_top(Math.floor(Math.random()*nbr_top))
+    SetRandom_left(Math.floor(Math.random()*nbr_left))
 
   },[random_top, random_left, point])
   
